@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 function CreateUser() {
    
@@ -8,11 +9,14 @@ function CreateUser() {
    const [email, setEmail]  = useState();
    const [password, setPassword]  = useState();
 
+   const navigate = useNavigate()
+
    const submit = (e)=>{
     e.preventDefault()
         axios.post("http://localhost:4000/create",{name,email,password})
               .then((a)=>{
                 console.log(a)
+                navigate('/')
               })
    }
   return (
