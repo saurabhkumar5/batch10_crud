@@ -41,6 +41,7 @@ function User() {
                     <td>{value.email}</td>
                     <td>{value.password}</td>
                     <button onClick={()=>userDelete(value._id)}>delete</button>
+                    <button><Link to={`/update/${value._id}`}>update</Link></button>
                   </tr>
                 })
                }

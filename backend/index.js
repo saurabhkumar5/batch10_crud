@@ -31,11 +31,31 @@ app.get('/',(req,res)=>{
     // res.send("hello from backend")
 })
 
+app.get('/getuser/:id',(req,res)=>{
+
+           const id = req.params.id
+          //  console.log(id)
+          userModel.findById({_id:id})
+          .then(value=>res.json(value))
+})
+
+
 app.post('/create',(req,res)=>{
      
-     console.log(req.body)
+    //  console.log(req.body)
      userModel.create(req.body)
     res.send("hello from create side")
+})
+
+app.put('/updateUser/:id',(req,res)=>{
+       
+            const id = req.params.id;
+            userModel.findByIdAndUpdate({_id:id},{
+              name:req.body.name,
+              email:req.body.email,
+              password:req.body.password
+            })
+            .then((value)=>res.json(value))
 })
 
 app.delete('/delete/:data',(req,res)=>{
